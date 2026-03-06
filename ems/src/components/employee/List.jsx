@@ -33,7 +33,8 @@ const List = () => {
 
   const filtered = employees.filter(emp =>
     emp.userId?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    emp.employeeId?.toLowerCase().includes(searchTerm.toLowerCase())
+    emp.employeeId?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    emp.userId?.email?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -47,7 +48,7 @@ const List = () => {
           <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
           <input
             type="text"
-            placeholder="Search By Name or ID"
+            placeholder="Search By Name, ID or Email"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-9 pr-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500 bg-gray-50 focus:bg-white transition"
@@ -68,6 +69,7 @@ const List = () => {
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">S No</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Emp ID</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Name</th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Email</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Department</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Designation</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Salary</th>
@@ -77,7 +79,7 @@ const List = () => {
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan="7" className="text-center py-8 text-gray-400">No employees found. Add one!</td>
+                <td colSpan="8" className="text-center py-8 text-gray-400">No employees found. Add one!</td>
               </tr>
             ) : (
               filtered.map((emp, index) => (
@@ -85,6 +87,7 @@ const List = () => {
                   <td className="px-4 py-3 text-sm">{index + 1}</td>
                   <td className="px-4 py-3 text-sm font-mono">{emp.employeeId}</td>
                   <td className="px-4 py-3 text-sm font-medium">{emp.userId?.name || 'N/A'}</td>
+                  <td className="px-4 py-3 text-sm text-gray-500">{emp.userId?.email || 'N/A'}</td>
                   <td className="px-4 py-3 text-sm">{emp.department?.dep_name || 'N/A'}</td>
                   <td className="px-4 py-3 text-sm">{emp.designation || 'N/A'}</td>
                   <td className="px-4 py-3 text-sm">₹{Number(emp.salary)?.toLocaleString()}</td>
