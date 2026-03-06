@@ -9,7 +9,9 @@ A full-stack **Employee Management System** built with React, Node.js, Express, 
 ## ✨ Features
 
 ### Admin Dashboard
-- 📊 **Dashboard** with charts (department distribution, salary stats, leave breakdown)
+- 📊 **Dashboard** with charts (department distribution, salary stats, leave breakdown) and **Birthday Reminders**
+- 📢 **Announcements** — Broadcast company-wide announcements with priority levels
+- 📅 **Holiday Calendar** — Manage national, regional, and company holidays
 - 👤 **Employee CRUD** — Add, Edit, View, Delete employees with profile photos
 - 🏬 **Department Management** — Create, edit, delete departments
 - 📅 **Attendance Management** — Track attendance with filters, search, and PDF export
@@ -19,10 +21,11 @@ A full-stack **Employee Management System** built with React, Node.js, Express, 
 
 ### Employee Dashboard
 - 👤 **Profile** — View personal info and edit phone/address
-- 📅 **Attendance Calendar** — Visual monthly calendar with status colors
-- 🏖️ **Apply Leave** — Submit leave requests
+- 📢 **Company Announcements** — View active broadcasts from admins
+- 📅 **Attendance & Holidays** — Visual monthly calendar and upcoming holiday countdown
+- 🏖️ **Apply Leave & Balance Tracker** — Submit requests and track remaining leave limits (Casual, Sick, Earned, Maternity)
 - 💰 **Salary & Payslips** — View salary breakdown and download PDF payslips
-- 🔔 **Notifications** — Personal notifications for leave updates
+- 🔔 **Notifications** — Personal notifications for leave updates and new announcements
 
 ### General
 - 🌙 **Dark Mode** — Toggle between light and dark themes
