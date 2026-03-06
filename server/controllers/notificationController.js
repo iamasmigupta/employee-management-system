@@ -11,11 +11,11 @@ const getNotifications = async (req, res) => {
         // Build query based on user role
         let query;
         if (user.role === 'admin') {
-            // Admin sees: notifications targeted to 'admin' role
-            query = { role: 'admin' };
+            // Admin sees: notifications targeted to 'admin' role or to them specifically
+            query = { $or: [{ role: 'admin' }, { userId: user._id }] };
         } else {
-            // Employee sees: notifications targeted to them specifically (by userId)
-            query = { userId: user._id };
+            // Employee sees: notifications targeted to them specifically OR to all employees by role
+            query = { $or: [{ userId: user._id }, { role: 'employee' }] };
         }
 
         const notifications = await Notification.find(query)

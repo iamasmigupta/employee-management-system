@@ -8,7 +8,8 @@ import {
     FaCogs,
     FaClipboardList,
     FaSignOutAlt,
-    FaUserEdit
+    FaUserEdit,
+    FaBullhorn
 } from 'react-icons/fa';
 import { useAuth } from '../../context/authContext';
 
@@ -22,6 +23,8 @@ const EmployeeSidebar = () => {
         { to: '/employee-dashboard/leaves', icon: <FaCalendarAlt />, label: 'My Leaves' },
         { to: '/employee-dashboard/salary', icon: <FaMoneyBillWave />, label: 'My Salary' },
         { to: '/employee-dashboard/edit-profile', icon: <FaUserEdit />, label: 'Edit Profile' },
+        { to: '/employee-dashboard/announcements', icon: <FaBullhorn />, label: 'Announcements' },
+        { to: '/employee-dashboard/holidays', icon: <FaCalendarAlt />, label: 'Holidays' },
         { to: '/employee-dashboard/settings', icon: <FaCogs />, label: 'Settings' },
     ];
 

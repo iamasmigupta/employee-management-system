@@ -18,6 +18,8 @@ import AddSalary from "./components/salary/AddSalary";
 import ManageLeaves from './components/Leaves/ManageLeaves';
 import ManageAttendance from './components/Attendance/ManageAttendance';
 import Settings from "./components/Settings/setting";
+import Announcements from "./components/Dashboard/Announcements";
+import HolidayCalendar from "./components/Dashboard/HolidayCalendar";
 
 // Employee Components
 import EmployeeSummary from "./components/EmployeeDashboard/EmployeeSummary";
@@ -26,6 +28,8 @@ import MyAttendance from "./components/EmployeeDashboard/MyAttendance";
 import ApplyLeave from "./components/EmployeeDashboard/ApplyLeave";
 import ViewSalary from "./components/EmployeeDashboard/ViewSalary";
 import EditProfile from "./components/EmployeeDashboard/EditProfile";
+import EmployeeAnnouncements from "./components/EmployeeDashboard/EmployeeAnnouncements";
+import EmployeeHolidays from "./components/EmployeeDashboard/EmployeeHolidays";
 
 function App() {
   return (
@@ -57,6 +61,8 @@ function App() {
           <Route path="leave" element={<ManageLeaves />} />
           <Route path="attendance" element={<ManageAttendance />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="announcements" element={<Announcements />} />
+          <Route path="holidays" element={<HolidayCalendar />} />
         </Route>
 
         {/* Employee Dashboard */}
@@ -77,6 +83,8 @@ function App() {
           <Route path="salary" element={<ViewSalary />} />
           <Route path="edit-profile" element={<EditProfile />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="announcements" element={<EmployeeAnnouncements />} />
+          <Route path="holidays" element={<EmployeeHolidays />} />
         </Route>
       </Routes>
     </BrowserRouter>

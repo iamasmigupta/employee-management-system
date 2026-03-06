@@ -9,6 +9,8 @@ import leaveRouter from './routes/leave.js';
 import attendanceRouter from './routes/attendance.js';
 import dashboardRouter from './routes/dashboard.js';
 import notificationRouter from './routes/notification.js';
+import announcementRouter from './routes/announcement.js';
+import holidayRouter from './routes/holiday.js';
 import connectToDatabase from './db/db.js';
 
 connectToDatabase();
@@ -51,6 +53,8 @@ app.use('/api/leave', leaveRouter);
 app.use('/api/attendance', attendanceRouter);
 app.use('/api/dashboard', dashboardRouter);
 app.use('/api/notification', notificationRouter);
+app.use('/api/announcement', announcementRouter);
+app.use('/api/holiday', holidayRouter);
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on http://localhost:${port}`);

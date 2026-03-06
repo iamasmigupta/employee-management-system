@@ -8,7 +8,8 @@ import {
   FaMoneyBillWave,
   FaCogs,
   FaClipboardList,
-  FaSignOutAlt
+  FaSignOutAlt,
+  FaBullhorn
 } from 'react-icons/fa';
 import { useAuth } from '../../context/authContext';
 
@@ -22,6 +23,8 @@ const AdminSidebar = () => {
     { to: '/admin-dashboard/leave', icon: <FaCalendarAlt />, label: 'Leaves' },
     { to: '/admin-dashboard/salary', icon: <FaMoneyBillWave />, label: 'Salary' },
     { to: '/admin-dashboard/attendance', icon: <FaClipboardList />, label: 'Attendance' },
+    { to: '/admin-dashboard/announcements', icon: <FaBullhorn />, label: 'Announcements' },
+    { to: '/admin-dashboard/holidays', icon: <FaCalendarAlt />, label: 'Holidays' },
     { to: '/admin-dashboard/settings', icon: <FaCogs />, label: 'Settings' },
   ];
 

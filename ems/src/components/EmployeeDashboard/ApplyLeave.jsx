@@ -3,14 +3,23 @@ import { useAuth } from '../../context/authContext';
 import axios from 'axios';
 import API_URL from '../../utils/api';
 
+const LEAVE_BALANCES = [
+    { type: 'Casual Leave', total: 12, color: 'blue' },
+    { type: 'Sick Leave', total: 10, color: 'purple' },
+    { type: 'Earned Leave', total: 15, color: 'teal' },
+    { type: 'Maternity Leave', total: 90, color: 'pink' },
+];
+
+const colorMap = {
+    blue: { bg: 'bg-blue-50', text: 'text-blue-700', bar: 'bg-blue-500', border: 'border-blue-100' },
+    purple: { bg: 'bg-purple-50', text: 'text-purple-700', bar: 'bg-purple-500', border: 'border-purple-100' },
+    teal: { bg: 'bg-teal-50', text: 'text-teal-700', bar: 'bg-teal-500', border: 'border-teal-100' },
+    pink: { bg: 'bg-pink-50', text: 'text-pink-700', bar: 'bg-pink-500', border: 'border-pink-100' },
+};
+
 const ApplyLeave = () => {
     const { user } = useAuth();
-    const [leaveData, setLeaveData] = useState({
-        leaveType: '',
-        startDate: '',
-        endDate: '',
-        reason: ''
-    });
+    const [leaveData, setLeaveData] = useState({ leaveType: '', startDate: '', endDate: '', reason: '' });
     const [leaves, setLeaves] = useState([]);
     const [submitting, setSubmitting] = useState(false);
 
@@ -18,9 +27,7 @@ const ApplyLeave = () => {
         if (!user?.email) return;
         try {
             const res = await axios.get(`${API_URL}/api/leave/employee?email=${user.email}`);
-            if (res.data.success) {
-                setLeaves(res.data.leaves);
-            }
+            if (res.data.success) setLeaves(res.data.leaves);
         } catch (err) {
             console.error('Failed to fetch leaves:', err);
         }
@@ -62,11 +69,38 @@ const ApplyLeave = () => {
         return Math.ceil(diff / (1000 * 60 * 60 * 24)) + 1;
     };
 
+    const getUsedDays = (type) => {
+        return leaves
+            .filter(l => l.leaveType === type && l.status === 'Approved')
+            .reduce((sum, l) => sum + getDays(l.startDate, l.endDate), 0);
+    };
+
     return (
         <div className="p-6">
             <h2 className="text-2xl font-bold mb-6">My Leaves</h2>
 
-            {/* Apply Leave Form — BLUE theme */}
+            {/* Leave Balance Cards */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                {LEAVE_BALANCES.map(({ type, total, color }) => {
+                    const used = getUsedDays(type);
+                    const remaining = Math.max(0, total - used);
+                    const pct = Math.min(100, Math.round((used / total) * 100));
+                    const c = colorMap[color];
+                    return (
+                        <div key={type} className={`rounded-2xl border ${c.bg} ${c.border} p-4`}>
+                            <p className="text-xs font-semibold text-gray-500 mb-1 leading-tight">{type}</p>
+                            <p className={`text-3xl font-bold ${c.text}`}>{remaining}</p>
+                            <p className="text-xs text-gray-400 mb-2">of {total} days remaining</p>
+                            <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                                <div className={`h-full ${c.bar} rounded-full transition-all`} style={{ width: `${pct}%` }}></div>
+                            </div>
+                            <p className="text-xs text-gray-400 mt-1">{used} used</p>
+                        </div>
+                    );
+                })}
+            </div>
+
+            {/* Apply Leave Form */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
                 <h3 className="text-lg font-semibold mb-4">Apply for Leave</h3>
                 <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -135,10 +169,10 @@ const ApplyLeave = () => {
                                         <td className="px-4 py-3">{leave.reason || '-'}</td>
                                         <td className="px-4 py-3">
                                             <span className={`px-3 py-1 rounded-full text-xs font-semibold
-                        ${leave.status === 'Approved' ? 'bg-green-100 text-green-700' : ''}
-                        ${leave.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' : ''}
-                        ${leave.status === 'Rejected' ? 'bg-red-100 text-red-700' : ''}
-                      `}>{leave.status}</span>
+                                                ${leave.status === 'Approved' ? 'bg-green-100 text-green-700' : ''}
+                                                ${leave.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' : ''}
+                                                ${leave.status === 'Rejected' ? 'bg-red-100 text-red-700' : ''}
+                                            `}>{leave.status}</span>
                                         </td>
                                     </tr>
                                 ))

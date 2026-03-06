@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SummaryCard from './SummaryCard';
-import { FaUsers, FaBuilding, FaMoneyBillWave, FaFileAlt, FaCheckCircle, FaHourglassHalf, FaTimesCircle } from 'react-icons/fa';
+import { FaUsers, FaBuilding, FaMoneyBillWave, FaFileAlt, FaCheckCircle, FaHourglassHalf, FaTimesCircle, FaBirthdayCake } from 'react-icons/fa';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import axios from 'axios';
 import API_URL from '../../utils/api';
@@ -52,6 +52,25 @@ const AdminSummary = () => {
   });
   const salaryData = Object.entries(salaryMap).map(([name, total]) => ({ name, salary: total }));
 
+  // Birthday Reminders
+  const today = new Date();
+  const toMD = (d) => {
+    const dt = new Date(d);
+    return `${String(dt.getMonth() + 1).padStart(2, '0')}-${String(dt.getDate()).padStart(2, '0')}`;
+  };
+  const todayMD = toMD(today);
+  const birthdays = employees
+    .filter(emp => emp.dob)
+    .map(emp => {
+      const dob = new Date(emp.dob);
+      const thisYear = new Date(today.getFullYear(), dob.getMonth(), dob.getDate());
+      const diff = Math.ceil((thisYear - today) / (1000 * 60 * 60 * 24));
+      const daysLeft = diff < 0 ? diff + 365 : diff;
+      return { emp, dob, daysLeft, isToday: toMD(emp.dob) === todayMD };
+    })
+    .sort((a, b) => a.daysLeft - b.daysLeft)
+    .slice(0, 8);
+
   return (
     <div className="p-6">
       {/* Dashboard Overview */}
@@ -61,6 +80,31 @@ const AdminSummary = () => {
         <SummaryCard icon={<FaBuilding />} text="Total Departments" number={summary.totalDepartments} color="bg-yellow-600" />
         <SummaryCard icon={<FaMoneyBillWave />} text="Monthly Salary" number={`₹${summary.totalSalary.toLocaleString()}`} color="bg-red-600" />
       </div>
+
+      {/* Birthday Reminders Widget */}
+      {birthdays.length > 0 && (
+        <div className="mt-8">
+          <h4 className="font-semibold text-gray-700 flex items-center gap-2 mb-4">
+            <FaBirthdayCake className="text-pink-500" /> Birthday Reminders
+          </h4>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {birthdays.map(({ emp, dob, daysLeft, isToday }) => (
+              <div key={emp._id} className={`rounded-2xl border p-3 flex items-center gap-3 ${isToday ? 'bg-pink-50 border-pink-200' : 'bg-white border-gray-100'}`}>
+                <div className={`w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0 ${isToday ? 'bg-pink-500' : 'bg-gradient-to-br from-purple-400 to-pink-500'}`}>
+                  {emp.userId?.name?.[0]?.toUpperCase() || '?'}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-gray-800 truncate">{emp.userId?.name || 'N/A'}</p>
+                  <p className="text-xs text-gray-400">
+                    {isToday ? '🎉 Today!' : daysLeft === 1 ? 'Tomorrow' : `In ${daysLeft} days`}
+                  </p>
+                  <p className="text-[10px] text-gray-300">{new Date(dob).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Leave Details */}
       <div className="mt-12">
@@ -85,19 +129,9 @@ const AdminSummary = () => {
             ) : (
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
-                  <Pie
-                    data={leaveData}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={100}
-                    paddingAngle={5}
-                    dataKey="value"
-                    label={({ name, value }) => `${name}: ${value}`}
-                  >
-                    {leaveData.map((entry, i) => (
-                      <Cell key={`cell-${i}`} fill={entry.color} />
-                    ))}
+                  <Pie data={leaveData} cx="50%" cy="50%" innerRadius={60} outerRadius={100} paddingAngle={5} dataKey="value"
+                    label={({ name, value }) => `${name}: ${value}`}>
+                    {leaveData.map((entry, i) => (<Cell key={`cell-${i}`} fill={entry.color} />))}
                   </Pie>
                   <Tooltip />
                   <Legend />

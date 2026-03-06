@@ -29,6 +29,7 @@ const EmployeeSummary = () => {
             <div className="p-6">
                 <h3 className="text-2xl font-bold">My Dashboard</h3>
                 <p className="text-gray-500 mt-1">Welcome, {user?.name || 'Employee'}!</p>
+                <p className="text-gray-400 text-sm">{user?.email}</p>
                 <p className="mt-4 text-gray-400">No employee record found. Please ask admin to add you as an employee first.</p>
             </div>
         );
@@ -38,6 +39,7 @@ const EmployeeSummary = () => {
         <div className="p-6">
             <h3 className="text-2xl font-bold">My Dashboard</h3>
             <p className="text-gray-500 mt-1">Welcome, {summary.employee.name}!</p>
+            <p className="text-gray-400 text-sm">{user?.email}</p>
 
             {/* Quick Stats — BLUE theme */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
