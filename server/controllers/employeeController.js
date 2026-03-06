@@ -79,7 +79,7 @@ const addEmployee = async (req, res) => {
     await createNotification({
       role: 'admin',
       title: 'New Employee Added',
-      message: `${formData?.name || name} has been added as an employee`,
+      message: `${name} has been added as an employee`,
       type: 'employee',
     });
 
