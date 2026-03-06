@@ -172,39 +172,18 @@ npm run dev
 
 ---
 
-## 📸 Screenshots
-
-### Admin Dashboard
-> Dashboard with charts, employee stats, and department overview
-
-### Attendance Calendar
-> Visual monthly calendar with color-coded attendance markers
-
-### Dark Mode
-> Full dark mode support across all pages
-
----
-
-## 🤝 Contributing
-
-1. Fork the repo
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
-
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-## 👩‍💻 Author
+## 👩💻 Author
 
 **Asmi Gupta**
 - GitHub: [@iamasmigupta](https://github.com/iamasmigupta)
+- LinkedIn: [Asmi Gupta](https://www.linkedin.com/in/asmi-gupta/)
+- Email: [itsasmigupta@gmail.com](mailto:itsasmigupta@gmail.com)
 
 ---
 
