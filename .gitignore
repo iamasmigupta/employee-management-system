@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+ems/node_modules/
+server/node_modules/
+
+# Environment variables
+.env
+ems/.env
+server/.env
+
+# Build output
+ems/dist/
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temp files
+fix_urls.mjs
+
+# Uploads (optional — uncomment if you don't want to track uploaded images)
+# server/public/uploads/

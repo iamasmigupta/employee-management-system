@@ -1,0 +1,153 @@
+/* @import "tailwindcss"; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   GLOBAL DARK MODE OVERRIDES
+   ========================================
+   These rules automatically convert light UI elements
+   to dark equivalents when dark mode is active.
+   This avoids editing every single component file.
+   ======================================== */
+
+/* --- Base backgrounds --- */
+.dark body {
+  background-color: #111827; /* gray-900 */
+  color: #e5e7eb; /* gray-200 */
+}
+
+/* --- Cards & Panels --- */
+.dark .bg-white {
+  background-color: #1f2937 !important; /* gray-800 */
+}
+.dark .bg-gray-50 {
+  background-color: #1a2332 !important;
+}
+.dark .bg-gray-100 {
+  background-color: #1f2937 !important;
+}
+
+/* --- Stat cards (colored backgrounds) stay but get darkened --- */
+.dark .bg-green-50 { background-color: rgba(16, 185, 129, 0.1) !important; }
+.dark .bg-red-50 { background-color: rgba(239, 68, 68, 0.1) !important; }
+.dark .bg-yellow-50 { background-color: rgba(245, 158, 11, 0.1) !important; }
+.dark .bg-amber-50 { background-color: rgba(245, 158, 11, 0.08) !important; }
+.dark .bg-blue-50 { background-color: rgba(59, 130, 246, 0.1) !important; }
+.dark .bg-indigo-50 { background-color: rgba(99, 102, 241, 0.1) !important; }
+.dark .bg-purple-50 { background-color: rgba(168, 85, 247, 0.1) !important; }
+.dark .bg-orange-50 { background-color: rgba(249, 115, 22, 0.08) !important; }
+
+/* --- Borders --- */
+.dark .border-gray-100,
+.dark .border-gray-200,
+.dark .border-gray-300 {
+  border-color: #374151 !important; /* gray-700 */
+}
+.dark .border-t {
+  border-top-color: #374151 !important;
+}
+.dark .border-b {
+  border-bottom-color: #374151 !important;
+}
+
+/* --- Text --- */
+.dark .text-gray-800 { color: #f3f4f6 !important; }
+.dark .text-gray-700 { color: #e5e7eb !important; }
+.dark .text-gray-600 { color: #d1d5db !important; }
+.dark .text-gray-500 { color: #9ca3af !important; }
+.dark .text-gray-400 { color: #9ca3af !important; }
+
+/* --- Inputs & Selects --- */
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #111827 !important; /* gray-900 */
+  border-color: #4b5563 !important; /* gray-600 */
+  color: #e5e7eb !important; /* gray-200 */
+}
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #6b7280 !important; /* gray-500 */
+}
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  background-color: #1f2937 !important;
+  border-color: #14b8a6 !important;
+}
+
+/* --- Tables --- */
+.dark table {
+  color: #e5e7eb;
+}
+.dark thead {
+  background-color: #1a2332 !important;
+}
+.dark thead th {
+  color: #9ca3af !important;
+}
+.dark tbody tr {
+  border-color: #374151 !important;
+}
+.dark tbody tr:hover {
+  background-color: rgba(255,255,255,0.03) !important;
+}
+
+/* --- Hover states --- */
+.dark .hover\:bg-gray-50:hover {
+  background-color: rgba(255,255,255,0.05) !important;
+}
+.dark .hover\:bg-gray-100:hover {
+  background-color: rgba(255,255,255,0.08) !important;
+}
+
+/* --- Shadows for dark mode --- */
+.dark .shadow-sm,
+.dark .shadow-md,
+.dark .shadow {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important;
+}
+.dark .shadow-2xl {
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
+}
+
+/* --- Scrollbar --- */
+.dark ::-webkit-scrollbar {
+  width: 6px;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 3px;
+}
+
+/* --- Chart backgrounds --- */
+.dark .recharts-cartesian-grid line {
+  stroke: #374151 !important;
+}
+.dark .recharts-text {
+  fill: #9ca3af !important;
+}
+.dark .recharts-tooltip-wrapper .recharts-default-tooltip {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+/* --- Colored badge backgrounds in dark mode --- */
+.dark .bg-green-100 { background-color: rgba(16, 185, 129, 0.15) !important; }
+.dark .bg-red-100 { background-color: rgba(239, 68, 68, 0.15) !important; }
+.dark .bg-yellow-100 { background-color: rgba(245, 158, 11, 0.15) !important; }
+.dark .bg-blue-100 { background-color: rgba(59, 130, 246, 0.15) !important; }
+.dark .bg-purple-100 { background-color: rgba(168, 85, 247, 0.15) !important; }
+.dark .bg-orange-100 { background-color: rgba(249, 115, 22, 0.15) !important; }
+.dark .bg-gray-100 { background-color: #374151 !important; }
+
+/* --- File input styling --- */
+.dark input[type="file"]::file-selector-button {
+  background-color: #374151;
+  color: #d1d5db;
+  border: none;
+}
