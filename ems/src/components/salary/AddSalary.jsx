@@ -131,6 +131,7 @@ const AddSalary = () => {
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">S No</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Emp ID</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Name</th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Email</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Department</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Designation</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Monthly Salary</th>
@@ -140,7 +141,7 @@ const AddSalary = () => {
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan="7" className="text-center py-8 text-gray-400">No employees found.</td>
+                <td colSpan="8" className="text-center py-8 text-gray-400">No employees found.</td>
               </tr>
             ) : (
               filtered.map((emp, index) => (
@@ -148,6 +149,7 @@ const AddSalary = () => {
                   <td className="px-4 py-3 text-sm">{index + 1}</td>
                   <td className="px-4 py-3 text-sm font-mono">{emp.employeeId}</td>
                   <td className="px-4 py-3 text-sm font-medium">{emp.userId?.name || 'N/A'}</td>
+                  <td className="px-4 py-3 text-sm text-gray-500">{emp.userId?.email || 'N/A'}</td>
                   <td className="px-4 py-3 text-sm">{emp.department?.dep_name || 'N/A'}</td>
                   <td className="px-4 py-3 text-sm">{emp.designation || 'N/A'}</td>
                   <td className="px-4 py-3 text-sm">

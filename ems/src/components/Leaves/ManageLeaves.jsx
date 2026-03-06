@@ -150,6 +150,7 @@ const ManageLeaves = () => {
             <tr>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">S No</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Name</th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Email</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Type</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">From</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">To</th>
@@ -162,13 +163,14 @@ const ManageLeaves = () => {
           <tbody>
             {filteredLeaves.length === 0 ? (
               <tr>
-                <td colSpan="9" className="text-center py-8 text-gray-400">No leave records found.</td>
+                <td colSpan="10" className="text-center py-8 text-gray-400">No leave records found.</td>
               </tr>
             ) : (
               filteredLeaves.map((leave, index) => (
                 <tr key={leave._id} className="border-t hover:bg-gray-50 transition">
                   <td className="px-4 py-3 text-sm">{index + 1}</td>
                   <td className="px-4 py-3 text-sm font-medium">{leave.employeeId?.userId?.name || 'N/A'}</td>
+                  <td className="px-4 py-3 text-sm text-gray-500">{leave.employeeId?.userId?.email || 'N/A'}</td>
                   <td className="px-4 py-3 text-sm">{leave.leaveType}</td>
                   <td className="px-4 py-3 text-sm">{new Date(leave.startDate).toLocaleDateString()}</td>
                   <td className="px-4 py-3 text-sm">{new Date(leave.endDate).toLocaleDateString()}</td>

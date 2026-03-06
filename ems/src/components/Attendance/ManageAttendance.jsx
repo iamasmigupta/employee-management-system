@@ -142,6 +142,7 @@ const ManageAttendance = () => {
             <tr>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">S No</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Name</th>
+              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Email</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Date</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Check In</th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Check Out</th>
@@ -152,13 +153,14 @@ const ManageAttendance = () => {
           <tbody>
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan="7" className="text-center py-8 text-gray-400">No attendance records found.</td>
+                <td colSpan="8" className="text-center py-8 text-gray-400">No attendance records found.</td>
               </tr>
             ) : (
               filtered.map((record, index) => (
                 <tr key={record._id} className="border-t hover:bg-gray-50 transition">
                   <td className="px-4 py-3 text-sm">{index + 1}</td>
                   <td className="px-4 py-3 text-sm font-medium">{record.employeeId?.userId?.name || 'N/A'}</td>
+                  <td className="px-4 py-3 text-sm text-gray-500">{record.employeeId?.userId?.email || 'N/A'}</td>
                   <td className="px-4 py-3 text-sm">{new Date(record.date).toLocaleDateString()}</td>
                   <td className="px-4 py-3 text-sm">{record.checkIn || '-'}</td>
                   <td className="px-4 py-3 text-sm">{record.checkOut || '-'}</td>
