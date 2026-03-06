@@ -42,7 +42,7 @@ const FormWrapper = ({ children, title, subtitle, error, successMsg }) => (
 
         {children}
       </div>
-      <p className="text-center text-xs text-gray-400 mt-6">© 2026 WorkSphere. All rights reserved.</p>
+      <p className="text-center text-xs text-gray-400 mt-6">© 2026 WorkSphere. Made with ❤️ by Asmi Gupta</p>
     </div>
   </div>
 );

@@ -86,6 +86,7 @@ const EmployeeSidebar = () => {
                     <FaSignOutAlt className="text-lg" />
                     <span>Sign Out</span>
                 </button>
+                <p className="text-[10px] text-gray-500 text-center mt-3 opacity-60">Made with ❤️ by Asmi Gupta</p>
             </div>
         </div>
     );
